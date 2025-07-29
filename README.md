@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Carta Especial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Great Vibes', cursive;
+      background: linear-gradient(to bottom, #ffd6e8, #fff0f5);
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .carta-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .carta {
+      background: #fff0f5;
+      border: 2px solid #ff8ebf;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+      transform: scale(0);
+      animation: abrirCarta 1s forwards ease-out;
+    }
+
+    @keyframes abrirCarta {
+      to {
+        transform: scale(1);
+      }
+    }
+
+    h1 {
+      color: #d63384;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      border: 2px solid #ff8ebf;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 20px;
+      background: #fffafc;
+      resize: none;
+    }
+
+    button {
+      background: #ff8ebf;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .mensaje {
+      margin-top: 15px;
+      font-size: 24px;
+      color: #d63384;
+      min-height: 50px;
+      white-space: pre-wrap;
+    }
+
+    .corazon {
+      position: absolute;
+      color: #ff4d88;
+      font-size: 24px;
+      animation: flotar 5s linear infinite;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="carta-container">
+    <div class="carta">
+      <h1>💌 Mi Carta Especial</h1>
+      <textarea id="mensajeInput" placeholder="Escribe tu mensaje aquí..."></textarea>
+      <br>
+      <button onclick="mostrarMensaje()">Mostrar Mensaje</button>
+      <div class="mensaje" id="mensajeSalida"></div>
+    </div>
+  </div>
+
+  <script>
+    function mostrarMensaje() {
+      const texto = document.getElementById('mensajeInput').value;
+      document.getElementById('mensajeSalida').textContent = texto || 'Aquí aparecerá tu mensaje...';
+    }
+
+    function crearCorazones() {
+      const corazon = document.createElement('div');
+      corazon.classList.add('corazon');
+      corazon.innerHTML = '❤️';
+      corazon.style.left = Math.random() * 100 + 'vw';
+      corazon.style.animationDuration = (3 + Math.random() * 2) + 's';
+      document.body.appendChild(corazon);
+
+      setTimeout(() => {
+        corazon.remove();
+      }, 5000);
+    }
+
+    setInterval(crearCorazones, 500);
+  </script>
+</body>
+</html>
